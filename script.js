@@ -1,3 +1,4 @@
+
 function computerPlay(){
   let randomNum = (Math.floor(Math.random()*3+1));
   switch (randomNum) {
@@ -7,34 +8,44 @@ function computerPlay(){
       return "paper";
     case 3:
       return "scissors";
-    default:
-      return "error, unexpected result"
   }
 }
 
-function winnerCheck(playerSelection, computerSelection){
-  let player = playerSelection.toLowerCase()
+function winnerDialog(playerSelection, computerSelection){
+  let player = playerSelection.toLowerCase();
   if(player === computerSelection){
-    return "You tied!"
+    return "It's a tie!"
   }else if(computerSelection === "paper"){
-    return player === "rock" ? "You lose! Paper beats Rock" : "You win! Scissors beats Paper";
+    return player === "rock" ? "Sorry, you lose! Paper beats Rock" : "You win! Scissors beats Paper";
   }else if(computerSelection === "rock"){
-    return player === "scissors" ? "You lose! Rock beats Scissors" : "You win! Paper beats Rock";
+    return player === "scissors" ? "Sorry, you lose! Rock beats Scissors" : "You win! Paper beats Rock";
   }else{
-    return player === "paper" ? "You lose! Scissors beats Paper" : "You win! Rock beats Scissors";
+    return player === "paper" ? "Sorry, you lose! Scissors beats Paper" : "You win! Rock beats Scissors";
   }
 }
 
-// const playerSelection = "PaPer";
-const computerSelection = computerPlay();
-// console.log(winnerCheck(playerSelection, computerSelection));
 
 function game(){
+  let winner = "No One";
+  let computerCount = 0;
+  let playerCount = 0;
   for (let i = 0; i < 5; i++){
+    let computerSelection = computerPlay();
     let playerSelection = prompt("Rock, paper, or scissors?");
-    console.log( winnerCheck(playerSelection, computerSelection));
+    let text = winnerDialog(playerSelection, computerSelection);
+    console.log(text);
+    if(text[0] === "Y"){
+      playerCount++;
+    }else if(text[0] === "S"){
+      computerCount++;
+    }
   }
+  if(playerCount > computerCount){
+    winner = "YOU!!"
+  }else if (computerCount > playerCount){
+    winner = "computer"
+  }
+  console.log(`And the winner is: ${winner}!`)
 }
 
-game()
-
+game();
