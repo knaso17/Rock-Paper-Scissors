@@ -25,6 +25,16 @@ function winnerCheck(playerSelection, computerSelection){
   }
 }
 
-const playerSelection = "PaPer";
+// const playerSelection = "PaPer";
 const computerSelection = computerPlay();
-console.log(winnerCheck(playerSelection, computerSelection));
+// console.log(winnerCheck(playerSelection, computerSelection));
+
+function game(){
+  for (let i = 0; i < 5; i++){
+    let playerSelection = prompt("Rock, paper, or scissors?");
+    console.log( winnerCheck(playerSelection, computerSelection));
+  }
+}
+
+game()
+
